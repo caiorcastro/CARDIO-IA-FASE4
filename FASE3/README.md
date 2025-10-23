@@ -86,4 +86,5 @@ O servidor irá processar os dados e imprimir alertas no console (em modo simula
 
 ## Link para o Projeto Wokwi
 
-- **Link Público:** **[COLE AQUI O LINK PÚBLICO DO SEU PROJETO WOKWI APÓS SALVÁ-LO]**
+- **Link Público:** https://wokwi.com/projects/445645684122269697
+

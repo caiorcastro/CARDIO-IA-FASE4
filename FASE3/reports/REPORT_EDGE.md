@@ -37,6 +37,6 @@ Este relatório descreve o fluxo de funcionamento do protótipo ESP32 no Wokwi, 
 
 ## Evidências (anexar prints)
 
-- Link público Wokwi da simulação: [INSERIR_LINK_AQUI]
+- Link público Wokwi da simulação: https://wokwi.com/projects/445645684122269697
 - Console do ESP32 publicando MQTT: imagem `images/wokwi_running.png`.
 - Fila SPIFFS sendo esvaziada após reconexão: imagem `images/esp32_flush_queue.png`.
