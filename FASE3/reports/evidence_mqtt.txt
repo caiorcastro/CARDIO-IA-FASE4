@@ -1,0 +1,13 @@
+[2025-10-23T22:55:03.942118Z] CONNECT rc=0 cid=cardioia-sub-1761260102299
+[2025-10-23T22:55:04.153721Z] CONNECT rc=0 cid=cardioia-pub-1761260102324
+[2025-10-23T22:55:04.943541Z] SUB cardioia/grupo1/vitals
+[2025-10-23T22:55:04.943711Z] SEND topic=cardioia/grupo1/vitals payload={"ts": 1761260104, "temp": 36.5, "hum": 55.0, "bpm": 125}
+[2025-10-23T22:55:05.170175Z] RECV topic=cardioia/grupo1/vitals payload={"ts": 1761260104, "temp": 36.5, "hum": 55.0, "bpm": 125}
+[2025-10-23T22:55:05.944361Z] SEND topic=cardioia/grupo1/vitals payload={"ts": 1761260105, "temp": 36.6, "hum": 55.5, "bpm": 76}
+[2025-10-23T22:55:06.192235Z] RECV topic=cardioia/grupo1/vitals payload={"ts": 1761260105, "temp": 36.6, "hum": 55.5, "bpm": 76}
+[2025-10-23T22:55:06.944895Z] SEND topic=cardioia/grupo1/vitals payload={"ts": 1761260106, "temp": 36.7, "hum": 56.0, "bpm": 77}
+[2025-10-23T22:55:07.175300Z] RECV topic=cardioia/grupo1/vitals payload={"ts": 1761260106, "temp": 36.7, "hum": 56.0, "bpm": 77}
+[2025-10-23T22:55:07.945256Z] SEND topic=cardioia/grupo1/vitals payload={"ts": 1761260107, "temp": 36.8, "hum": 56.5, "bpm": 78}
+[2025-10-23T22:55:08.200313Z] RECV topic=cardioia/grupo1/vitals payload={"ts": 1761260107, "temp": 36.8, "hum": 56.5, "bpm": 78}
+[2025-10-23T22:55:08.946159Z] SEND topic=cardioia/grupo1/vitals payload={"ts": 1761260108, "temp": 36.9, "hum": 57.0, "bpm": 79}
+[2025-10-23T22:55:09.161546Z] RECV topic=cardioia/grupo1/vitals payload={"ts": 1761260108, "temp": 36.9, "hum": 57.0, "bpm": 79}
