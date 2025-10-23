@@ -30,3 +30,7 @@ Este relatório descreve o fluxo de comunicação MQTT e a configuração do das
 - Limites de alerta podem ser ajustados diretamente no nó `switch`.
 - Opcional: exportar dados para um banco de séries temporais (e.g., InfluxDB) e visualizar no Grafana.
 
+## Evidências (anexar prints)
+
+- Fluxo Node‑RED importado e conectado: imagem `images/node_red_flow.png`.
+- Dashboard com gráfico (BPM), gauge (Temperatura) e alerta visual: imagem `images/node_red_dashboard.png`.

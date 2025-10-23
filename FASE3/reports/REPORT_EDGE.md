@@ -35,3 +35,8 @@ Este relatório descreve o fluxo de funcionamento do protótipo ESP32 no Wokwi, 
 - O SSID padrão para simulação é `Wokwi-GUEST`. Ajuste `WIFI_SSID/WIFI_PASS` para cenários reais.
 - O botão incrementa batimentos; o DHT22 gera temperatura/umidade. Leituras inválidas são suavemente simuladas.
 
+## Evidências (anexar prints)
+
+- Link público Wokwi da simulação: [INSERIR_LINK_AQUI]
+- Console do ESP32 publicando MQTT: imagem `images/wokwi_running.png`.
+- Fila SPIFFS sendo esvaziada após reconexão: imagem `images/esp32_flush_queue.png`.

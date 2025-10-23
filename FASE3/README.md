@@ -63,3 +63,8 @@ Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajus
 - `reports/REPORT_EDGE.md` — Parte 1 (Edge + SPIFFS + resiliência)
 - `reports/REPORT_MQTT_DASH.md` — Parte 2 (MQTT + Dashboard)
 
+## Evidências
+
+- Link Wokwi (público): [INSERIR_LINK_AQUI]
+- Prints em `FASE3/reports/images/` conforme seções dos relatórios.
+
