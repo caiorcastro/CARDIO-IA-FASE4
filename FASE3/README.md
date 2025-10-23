@@ -34,7 +34,7 @@ Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajus
 
 ### Usar HiveMQ Cloud (TLS 8883)
 
-1) Edite `FASE3/wokwi/config.h` e preencha `MQTT_USERNAME` e `MQTT_PASSWORD` com seu usuário e senha do HiveMQ Cloud.
+1) Crie `FASE3/wokwi/config.h` a partir de `FASE3/wokwi/config.example.h` e edite e preencha `MQTT_USERNAME` e `MQTT_PASSWORD` com seu usuário e senha do HiveMQ Cloud.
 2) O host e porta já estão configurados: `817c2430152f460ba0cb75228198eb57.s1.eu.hivemq.cloud:8883`.
 3) Por padrão, usamos `TLS_INSECURE 1` (protótipo, sem validação do certificado). Para validação completa, defina `TLS_INSECURE 0` e cole o `ROOT_CA` do seu endpoint.
 4) Compile e rode no Wokwi. O dispositivo passará a publicar no HiveMQ Cloud.
@@ -62,3 +62,4 @@ Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajus
 
 - `reports/REPORT_EDGE.md` — Parte 1 (Edge + SPIFFS + resiliência)
 - `reports/REPORT_MQTT_DASH.md` — Parte 2 (MQTT + Dashboard)
+

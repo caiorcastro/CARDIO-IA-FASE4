@@ -28,4 +28,6 @@ read_pdf_pdfminer.py
 ocr_pdf.py
 tmp_p3_*.txt
 FIAP FASE 3.txt
-
+get_cert.py
+hivemq_cloud_cert.pem
+FASE3/wokwi/config.h
