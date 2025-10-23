@@ -1,70 +1,119 @@
-# CardioIA — Fase 3: Monitoramento Contínuo (IoT)
+# CardioIA - Fase 3: Monitoramento Contínuo de Saúde com IoT
 
-Este diretório contém os artefatos para a entrega da Fase 3:
+## Visão Geral do Projeto
 
-- Wokwi (ESP32) com DHT22 + Botão (simulação de BPM), armazenamento SPIFFS, resiliência offline, envio MQTT.
-- Fluxo Node-RED (dashboard com gráfico, gauge e alerta automático).
-- IR ALÉM 1: Script REST em Python com lógica de risco e disparo de e‑mail (simulado ou SMTP real via env vars).
-- IR ALÉM 2: Notebook de séries temporais (detecção de anomalias simples e baseline comparativo).
+Este projeto implementa um protótipo funcional de um sistema de monitoramento de saúde, integrando conceitos de Edge, Fog e Cloud Computing. A solução simula a coleta de sinais vitais de um paciente, o processamento local, a transmissão para a nuvem, a visualização em um dashboard e o disparo de alertas automatizados.
 
-## Estrutura
+O projeto abrange desde a programação de um microcontrolador simulado (ESP32) até a criação de uma API REST e a análise de dados com modelos de Machine Learning.
 
-- `wokwi/` — Projeto ESP32 (Arduino)
-- `node-red/flow.json` — Fluxo importável no Node‑RED
-- `ir-alem/` — Scripts REST + README
-- `reports/` — Relatórios solicitados (Parte 1 e Parte 2)
-- `notebooks/phase3_time_series.ipynb` — Notebook de séries temporais
+## Estrutura de Diretórios
 
-## Tópicos e limites
+```
+FASE3/
+├── ir-alem/              # IR ALÉM 1: API REST e cliente
+│   ├── client.py
+│   ├── rest_alerts.py
+│   ├── requirements.txt
+│   └── REPORT_REST.md
+├── node-red/             # Fluxos do Node-RED
+│   ├── flow-hivemq-cloud.json
+│   └── flow.json
+├── notebooks/            # IR ALÉM 2: Análise de Séries Temporais
+│   ├── phase3_time_series.ipynb
+│   └── REPORT_TIMESERIES.md
+├── reports/              # Relatórios principais (Parte 1 e 2)
+│   ├── REPORT_EDGE.md
+│   └── REPORT_MQTT_DASH.md
+├── tools/                # Scripts de teste
+│   └── test_mqtt_publish.py
+└── wokwi/                # PARTE 1: Projeto do ESP32
+    ├── sketch.ino
+    ├── diagram.json
+    └── config.example.h
+```
 
-- Tópico MQTT: `cardioia/grupo1/vitals`
-- Broker: `broker.hivemq.com:1883` (público, sem autenticação, para prototipagem)
-- Limites de alerta (exemplo): BPM > 120 ou Temperatura > 38°C
+## Checklist de Entregáveis (Avaliação)
+
+Esta seção mapeia todos os requisitos da atividade para seus respectivos artefatos no projeto, garantindo que todos os critérios foram atendidos.
+
+| Requisito                                      | Status      | Artefato(s) Correspondente(s)                                                                                             |
+| ---------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Parte 1: Edge Computing**                    |             |                                                                                                                           |
+| App Wokwi com ESP32 e 2 sensores               | ✅ Completo | `wokwi/sketch.ino`, `wokwi/diagram.json`                                                                                  |
+| Armazenamento local em SPIFFS                  | ✅ Completo | `wokwi/sketch.ino` (funções `appendQueue`, `ensureSPIFFS`)                                                                |
+| Resiliência offline e sincronização            | ✅ Completo | `wokwi/sketch.ino` (funções `publishOrQueue`, `flushQueue`)                                                               |
+| Código C++ comentado                           | ✅ Completo | `wokwi/sketch.ino`                                                                                                        |
+| Relatório de fluxo e resiliência (1 pág. min)  | ✅ Completo | `reports/REPORT_EDGE.md`                                                                                                  |
+| **Parte 2: Cloud/Fog Computing**               |             |                                                                                                                           |
+| Envio de dados via MQTT para broker na nuvem   | ✅ Completo | `wokwi/sketch.ino` (integrado com HiveMQ Cloud)                                                                           |
+| Dashboard em Node-RED                          | ✅ Completo | `node-red/flow-hivemq-cloud.json`                                                                                           |
+| Gráfico de sinal vital (BPM)                   | ✅ Completo | Node-RED: Nó `ui_chart`                                                                                                   |
+| Medidor/gauge (Temperatura)                    | ✅ Completo | Node-RED: Nó `ui_gauge`                                                                                                   |
+| Alerta visual para valores anômalos            | ✅ Completo | Node-RED: Nós `switch` e `ui_text`                                                                                        |
+| Relatório de comunicação MQTT (2 pág. min)     | ✅ Completo | `reports/REPORT_MQTT_DASH.md`                                                                                             |
+| **Ir Além 1: API REST e Alertas**              |             |                                                                                                                           |
+| Cliente e Servidor REST em Python              | ✅ Completo | `ir-alem/client.py`, `ir-alem/rest_alerts.py`                                                                             |
+| Lógica de verificação de risco                 | ✅ Completo | `ir-alem/rest_alerts.py` (função `risk_check`)                                                                            |
+| Simulação de disparo de e-mail                 | ✅ Completo | `ir-alem/rest_alerts.py` (função `send_email` com modo simulado)                                                          |
+| Relatório do fluxo implementado (1-2 pág.)     | ✅ Completo | `ir-alem/REPORT_REST.md`                                                                                                  |
+| **Ir Além 2: Análise de Séries Temporais**     |             |                                                                                                                           |
+| Notebook Python comentado                      | ✅ Completo | `notebooks/phase3_time_series.ipynb`                                                                                      |
+| Comparação de métodos (Z-score vs MAD)         | ✅ Completo | `notebooks/phase3_time_series.ipynb`                                                                                      |
+| Relatório comparativo (2 pág.)                 | ✅ Completo | `notebooks/REPORT_TIMESERIES.md`                                                                                          |
+| Vídeo de 4 min apresentando resultados         | ⚠️ **Pendente** | **Ação manual necessária.** O vídeo deve ser gravado e o link inserido neste README.                                      |
 
 ---
 
-## Como executar — Wokwi (ESP32)
+## Como Executar o Projeto
 
-1) Abra `wokwi/` no https://wokwi.com (importando os arquivos `diagram.json`, `wokwi.toml` e `sketch.ino`).
-2) Clique em "Start the simulation".
-3) O botão físico incrementa batimentos; o DHT22 fornece temperatura/umidade.
-4) Quando online, o dispositivo publica dados no MQTT; offline, armazena no SPIFFS e sincroniza ao voltar.
+### Pré-requisitos
 
-Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajuste `WIFI_SSID/WIFI_PASS` no código.
+- Acesso à internet
+- Conta no [Wokwi](https://wokwi.com/)
+- Conta no [HiveMQ Cloud](https://www.hivemq.com/cloud/) (plano gratuito)
+- [Node.js](https://nodejs.org/en/) e [Node-RED](https://nodered.org/docs/getting-started/local) instalados
+- [Python 3](https://www.python.org/downloads/) e `pip`
 
-### Usar HiveMQ Cloud (TLS 8883)
+### 1. Simulação do Dispositivo (Wokwi)
 
-1) Crie `FASE3/wokwi/config.h` a partir de `FASE3/wokwi/config.example.h` e edite e preencha `MQTT_USERNAME` e `MQTT_PASSWORD` com seu usuário e senha do HiveMQ Cloud.
-2) O host e porta já estão configurados: `817c2430152f460ba0cb75228198eb57.s1.eu.hivemq.cloud:8883`.
-3) Por padrão, usamos `TLS_INSECURE 1` (protótipo, sem validação do certificado). Para validação completa, defina `TLS_INSECURE 0` e cole o `ROOT_CA` do seu endpoint.
-4) Compile e rode no Wokwi. O dispositivo passará a publicar no HiveMQ Cloud.
+1.  **Configurar Credenciais:**
+    -   Crie o arquivo `FASE3/wokwi/config.h` a partir do exemplo `FASE3/wokwi/config.example.h`.
+    -   Preencha `MQTT_USERNAME` e `MQTT_PASSWORD` com suas credenciais do HiveMQ Cloud.
+2.  **Abrir no Wokwi:**
+    -   Vá para [wokwi.com](https://wokwi.com/) e crie um novo projeto ESP32.
+    -   Arraste os arquivos `sketch.ino`, `diagram.json` e o `config.h` que você criou para dentro do editor do Wokwi.
+3.  **Iniciar Simulação:** Clique em "Start the simulation". O log na serial mostrará a conexão e o envio de dados.
 
-## Como executar — Node‑RED
+### 2. Dashboard de Monitoramento (Node-RED)
 
-1) Inicie seu Node‑RED local (ou em nuvem) com `node-red-dashboard` instalado.
-2) Para HiveMQ Cloud, importe `node-red/flow-hivemq-cloud.json` e, após importar, abra o nó do broker "HiveMQ Cloud" e preencha Usuário/Senha (Node‑RED não exporta credenciais). TLS já vem habilitado (porta 8883).
-3) Alternativamente, para broker público sem TLS, importe `node-red/flow.json`.
-4) Acesse o Dashboard para ver o gráfico (BPM), gauge (Temperatura) e o alerta visual.
+1.  **Instalar o Dashboard:** Se for a primeira vez, instale o painel com o comando: `npm install node-red-dashboard`.
+2.  **Iniciar Node-RED:** Execute `node-red` no seu terminal.
+3.  **Importar o Fluxo:**
+    -   Abra o editor (normalmente `http://127.0.0.1:1880`).
+    -   Vá em `Menu > Import` e cole o conteúdo do arquivo `node-red/flow-hivemq-cloud.json`.
+4.  **Configurar Credenciais:**
+    -   Dê um duplo clique no nó MQTT de entrada (`Vitals`).
+    -   Clique no ícone de lápis para editar o broker.
+    -   Na aba "Security", preencha seu `Username` e `Password` do HiveMQ Cloud.
+5.  **Acessar o Dashboard:** Abra a URL do dashboard (geralmente `http://127.0.0.1:1880/ui`).
 
-## IR ALÉM 1 — REST + E‑mail
+### 3. API de Alertas (Python REST API)
 
-- Servidor/cliente em `ir-alem/`.
-- Requerimentos: `pip install -r ir-alem/requirements.txt`
-- Executar servidor: `uvicorn ir-alem.rest_alerts:app --reload`
-- Executar cliente: `python ir-alem/client.py`
-- E‑mail: configure as variáveis de ambiente para SMTP (veja `ir-alem/README.md`) ou use modo simulado.
+1.  **Navegar para o diretório:** `cd FASE3/ir-alem`
+2.  **Instalar dependências:** `pip install -r requirements.txt`
+3.  **Executar o servidor:** `uvicorn rest_alerts:app --reload`
+4.  **Executar o cliente (em outro terminal):** `python client.py`
 
-## IR ALÉM 2 — Notebook
+O servidor irá processar os dados e imprimir alertas no console (em modo simulado).
 
-- Abra `notebooks/phase3_time_series.ipynb` no Jupyter e execute as células.
+### 4. Análise de Dados (Jupyter Notebook)
 
-## Relatórios
+1.  **Instalar dependências:** `pip install jupyter pandas numpy matplotlib`
+2.  **Iniciar Jupyter:** `jupyter notebook`
+3.  **Abrir o Notebook:** Navegue e abra o arquivo `FASE3/notebooks/phase3_time_series.ipynb` e execute as células.
 
-- `reports/REPORT_EDGE.md` — Parte 1 (Edge + SPIFFS + resiliência)
-- `reports/REPORT_MQTT_DASH.md` — Parte 2 (MQTT + Dashboard)
+---
 
-## Evidências
+## Link para o Projeto Wokwi
 
-- Link Wokwi (público): [INSERIR_LINK_AQUI]
-- Prints em `FASE3/reports/images/` conforme seções dos relatórios.
-
+- **Link Público:** **[COLE AQUI O LINK PÚBLICO DO SEU PROJETO WOKWI APÓS SALVÁ-LO]**
