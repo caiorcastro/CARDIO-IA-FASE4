@@ -3,6 +3,21 @@
 #include <DHT.h>
 #include <SPIFFS.h>
 #include <ArduinoJson.h>
+#include <WiFiClientSecure.h>
+
+// Config opcional externo (HiveMQ Cloud, credenciais, TLS)
+#if __has_include("config.h")
+#include "config.h"
+#else
+#define USE_HIVEMQ_CLOUD 0
+#define MQTT_USERNAME ""
+#define MQTT_PASSWORD ""
+#define MQTT_USE_TLS 0
+#define TLS_INSECURE 1
+#define ROOT_CA ""
+#define MQTT_HOST_FALLBACK "broker.hivemq.com"
+#define MQTT_PORT_FALLBACK 1883
+#endif
 
 // --- Config ---
 #define DHTPIN 15
@@ -12,8 +27,14 @@
 const char* WIFI_SSID = "Wokwi-GUEST";
 const char* WIFI_PASS = "";
 
-const char* MQTT_HOST = "broker.hivemq.com";
-const uint16_t MQTT_PORT = 1883;
+// Broker/porta definidos por config.h quando USE_HIVEMQ_CLOUD = 1
+#if USE_HIVEMQ_CLOUD
+const char* MQTT_HOST = MQTT_HOST_CLOUD; // definido no config.h
+const uint16_t MQTT_PORT = MQTT_PORT_CLOUD;
+#else
+const char* MQTT_HOST = MQTT_HOST_FALLBACK;
+const uint16_t MQTT_PORT = MQTT_PORT_FALLBACK;
+#endif
 const char* MQTT_TOPIC = "cardioia/grupo1/vitals";
 
 // Resiliência e fila
@@ -22,8 +43,12 @@ const uint32_t PUBLISH_INTERVAL_MS = 3000; // 3s
 
 // --- Globals ---
 DHT dht(DHTPIN, DHTTYPE);
-WiFiClient espClient;
-PubSubClient mqtt(espClient);
+#if MQTT_USE_TLS
+WiFiClientSecure netClient;
+#else
+WiFiClient netClient;
+#endif
+PubSubClient mqtt(netClient);
 
 volatile uint16_t bpm_clicks = 0;
 uint32_t last_publish = 0;
@@ -85,7 +110,13 @@ void ensureMQTT() {
   if (mqtt.connected()) return;
   mqtt.setServer(MQTT_HOST, MQTT_PORT);
   String cid = String("cardioia-") + String((uint32_t)ESP.getEfuseMac(), HEX);
-  if (mqtt.connect(cid.c_str())) {
+  bool ok = false;
+  if (String(MQTT_USERNAME).length() > 0) {
+    ok = mqtt.connect(cid.c_str(), MQTT_USERNAME, MQTT_PASSWORD);
+  } else {
+    ok = mqtt.connect(cid.c_str());
+  }
+  if (ok) {
     Serial.println("[MQTT] Conectado");
   }
 }
@@ -166,6 +197,15 @@ void setup() {
   ensureSPIFFS();
   dht.begin();
   connectWiFi();
+#if MQTT_USE_TLS
+  if (TLS_INSECURE) {
+    netClient.setInsecure(); // protótipo (não verifica certificado)
+    Serial.println("[TLS] Modo inseguro (protótipo)");
+  } else if (String(ROOT_CA).length() > 0) {
+    netClient.setCACert(ROOT_CA);
+    Serial.println("[TLS] CA configurada");
+  }
+#endif
 }
 
 void loop() {
@@ -190,4 +230,3 @@ void loop() {
 
   delay(10);
 }
-

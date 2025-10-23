@@ -32,11 +32,18 @@ Este diretório contém os artefatos para a entrega da Fase 3:
 
 Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajuste `WIFI_SSID/WIFI_PASS` no código.
 
+### Usar HiveMQ Cloud (TLS 8883)
+
+1) Edite `FASE3/wokwi/config.h` e preencha `MQTT_USERNAME` e `MQTT_PASSWORD` com seu usuário e senha do HiveMQ Cloud.
+2) O host e porta já estão configurados: `817c2430152f460ba0cb75228198eb57.s1.eu.hivemq.cloud:8883`.
+3) Por padrão, usamos `TLS_INSECURE 1` (protótipo, sem validação do certificado). Para validação completa, defina `TLS_INSECURE 0` e cole o `ROOT_CA` do seu endpoint.
+4) Compile e rode no Wokwi. O dispositivo passará a publicar no HiveMQ Cloud.
+
 ## Como executar — Node‑RED
 
 1) Inicie seu Node‑RED local (ou em nuvem) com `node-red-dashboard` instalado.
-2) Importe `node-red/flow.json` (Menu → Import → Clipboard).
-3) Ajuste o broker, se necessário. O fluxo assume `broker.hivemq.com:1883` e tópico `cardioia/grupo1/vitals`.
+2) Para HiveMQ Cloud, importe `node-red/flow-hivemq-cloud.json` e, após importar, abra o nó do broker "HiveMQ Cloud" e preencha Usuário/Senha (Node‑RED não exporta credenciais). TLS já vem habilitado (porta 8883).
+3) Alternativamente, para broker público sem TLS, importe `node-red/flow.json`.
 4) Acesse o Dashboard para ver o gráfico (BPM), gauge (Temperatura) e o alerta visual.
 
 ## IR ALÉM 1 — REST + E‑mail
@@ -55,4 +62,3 @@ Observação: a simulação usa `Wokwi-GUEST` como SSID. Para Wi‑Fi real, ajus
 
 - `reports/REPORT_EDGE.md` — Parte 1 (Edge + SPIFFS + resiliência)
 - `reports/REPORT_MQTT_DASH.md` — Parte 2 (MQTT + Dashboard)
-
