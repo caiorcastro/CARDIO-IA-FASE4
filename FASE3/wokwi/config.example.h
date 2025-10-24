@@ -59,3 +59,8 @@ UVH0XBkbReDupQk2xQ==
 #define MQTT_PORT_FALLBACK 1883
 
 
+
+// Simulação de período offline (ms) após o boot para evidências de resiliência/flush
+#ifndef OFFLINE_SIM_MS
+#define OFFLINE_SIM_MS 6000
+#endif

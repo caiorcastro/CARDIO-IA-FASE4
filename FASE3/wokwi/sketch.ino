@@ -17,6 +17,7 @@
 #define ROOT_CA ""
 #define MQTT_HOST_FALLBACK "broker.hivemq.com"
 #define MQTT_PORT_FALLBACK 1883
+#define OFFLINE_SIM_MS 0
 #endif
 
 // --- Config ---
@@ -54,6 +55,7 @@ volatile uint16_t bpm_clicks = 0;
 uint32_t last_publish = 0;
 uint32_t last_bpm_calc = 0;
 float last_bpm = 0;
+uint32_t boot_ms = 0;
 
 // --- Utils ---
 void ensureSPIFFS() {
@@ -97,6 +99,12 @@ void appendQueue(const String& line) {
 }
 
 bool wifiConnected() {
+  #ifdef OFFLINE_SIM_MS
+  if (OFFLINE_SIM_MS > 0 && (millis() - boot_ms) < OFFLINE_SIM_MS) {
+    // Simula período offline no boot para evidenciar a resiliência/flush da fila
+    return false;
+  }
+  #endif
   return WiFi.status() == WL_CONNECTED;
 }
 
@@ -197,6 +205,7 @@ void setup() {
   ensureSPIFFS();
   dht.begin();
   connectWiFi();
+  boot_ms = millis();
 #if MQTT_USE_TLS
   if (TLS_INSECURE) {
     netClient.setInsecure(); // protótipo (não verifica certificado)
