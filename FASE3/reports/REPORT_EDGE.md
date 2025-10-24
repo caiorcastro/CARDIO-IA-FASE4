@@ -46,3 +46,6 @@ Este relatório descreve o fluxo de funcionamento do protótipo ESP32 no Wokwi, 
 Opcional (adicionar quando executar a simulação no Wokwi):
 - Console do ESP32 publicando MQTT: `images/wokwi_running.png`.
 - Fila SPIFFS sendo esvaziada após reconexão: `images/esp32_flush_queue.png`.
+
+Nota: a simulação de período offline é controlada por `OFFLINE_SIM_MS` em `FASE3/wokwi/config.example.h` e 
+`FASE3/wokwi/sketch.ino` respeita esse valor para demonstrar a resiliência/flush da fila.
