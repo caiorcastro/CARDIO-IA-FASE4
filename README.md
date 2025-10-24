@@ -67,8 +67,3 @@ Evidência de pub/sub MQTT (TLS 8883): ver `FASE3/reports/evidence_mqtt.txt`.
 - 0.1.0 — 2025‑10‑24
   - Entrega Fase 3 (ESP32+SPIFFS+MQTT TLS, Node‑RED, REST, Notebook) + evidências
 
-## Licença
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-<a property="dct:title" rel="cc:attributionURL" href="https://github.com/lfusca/templateFiap">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">FIAP</a> está licenciado sob <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0</a>.
-</p>
