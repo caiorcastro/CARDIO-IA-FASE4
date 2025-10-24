@@ -45,6 +45,21 @@ FASE3/
 
 ## Evidências Visuais
 
-| Wokwi (rodando) | Flush SPIFFS | Dashboard | Fluxo |
-|---|---|---|---|
-| ![](reports/images/wokwi_running.png) | ![](reports/images/esp32_flush_queue.png) | ![](reports/images/node_red_dashboard.png) | ![](reports/images/node_red_flow.png) |
+<table>
+  <thead>
+    <tr>
+      <th>Wokwi (rodando)</th>
+      <th>Flush SPIFFS</th>
+      <th>Dashboard</th>
+      <th>Fluxo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="reports/images/wokwi_running.png" alt="Wokwi rodando" width="360" /></td>
+      <td><img src="reports/images/esp32_flush_queue.png" alt="Flush SPIFFS" width="360" /></td>
+      <td><img src="reports/images/node_red_dashboard.png" alt="Node-RED dashboard" width="360" /></td>
+      <td><img src="reports/images/node_red_flow.png" alt="Node-RED fluxo" width="360" /></td>
+    </tr>
+  </tbody>
+  </table>
