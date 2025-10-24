@@ -43,23 +43,4 @@ FASE3/
 4) Notebook
 - `jupyter notebook` e abra `notebooks/phase3_time_series.ipynb`
 
-## Evidências Visuais
-
-<table>
-  <thead>
-    <tr>
-      <th>Wokwi (rodando)</th>
-      <th>Flush SPIFFS</th>
-      <th>Dashboard</th>
-      <th>Fluxo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="https://raw.githubusercontent.com/caiorcastro/CARDIO-IA-FASE3/main/FASE3/reports/images/wokwi_running.png" alt="Wokwi rodando" width="360" /></td>
-      <td><img src="reports/images/esp32_flush_queue.png" alt="Flush SPIFFS" width="360" /></td>
-      <td><img src="reports/images/node_red_dashboard.png" alt="Node-RED dashboard" width="360" /></td>
-      <td><img src="https://raw.githubusercontent.com/caiorcastro/CARDIO-IA-FASE3/main/FASE3/reports/images/node_red_flow.png" alt="Node-RED fluxo" width="360" /></td>
-    </tr>
-  </tbody>
-  </table>
+## Evidências
