@@ -1,0 +1,9 @@
+
+import { Navigate } from "react-router-dom"
+import { useAuth } from "../contexts/AuthContext.jsx"
+
+export default function RouteGuard({ children }){
+  const { user } = useAuth()
+  if(!user) return <Navigate to="/login" />
+  return children
+}

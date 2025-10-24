@@ -48,7 +48,8 @@ Links rápidos:
 - `document/`: relatórios e documentos do projeto (links para relatórios detalhados)
 - `scripts/`: scripts auxiliares
 - `src/`: código‑fonte (ver FASE3 na raiz)
-- `FASE3/`: artefatos da Fase 3 (ESP32, Node‑RED, REST, Notebooks, Evidências)
+ - `FASE3/`: artefatos da Fase 3 (ESP32, Node‑RED, REST, Notebooks, Evidências)
+ - `FASES/`: cópias de referência das fases anteriores (quando disponíveis)
 
 ## Como executar o código (Fase 3)
 - Wokwi (ESP32): importe `FASE3/wokwi/` no https://wokwi.com e inicie a simulação. Configurar `config.h` a partir de `config.example.h` com as credenciais do HiveMQ Cloud.
@@ -63,7 +64,11 @@ Evidência de pub/sub MQTT (TLS 8883): ver `FASE3/reports/evidence_mqtt.txt`.
 ## Documentos
 - Ver `document/README.md` para links dos relatórios (Parte 1, Parte 2, IR ALÉM 1 e 2) e evidências.
 
+## Repositórios das Fases Anteriores
+
+- Fase 1: https://github.com/FernandoSegregio/CardioIA (inacessível no momento; cópia local pendente em `FASES/Fase1/`)
+- Fase 2: https://github.com/Wellbrito29/CardioIA-diagnostic- (cópia local em `FASES/Fase2/`)
+
 ## Histórico de lançamentos
 - 0.1.0 — 2025‑10‑24
   - Entrega Fase 3 (ESP32+SPIFFS+MQTT TLS, Node‑RED, REST, Notebook) + evidências
-

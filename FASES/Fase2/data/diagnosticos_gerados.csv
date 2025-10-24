@@ -1,0 +1,11 @@
+frase,diagnostico_sugerido,sintomas_casados,confianca,risco_heuristico
+Há dois dias sinto dor no peito que piora quando faço esforço físico.,Indefinido,[],0.0,baixo risco
+Desde ontem à noite tenho falta de ar e um aperto no tórax ao subir escadas.,Angina,"[[""falta de ar"", ""subir escadas""]]",0.33,alto risco
+"Sinto cansaço constante há uma semana, mesmo depois de dormir bem.",Indefinido,[],0.0,baixo risco
+Notei palpitações e tontura hoje de manhã após caminhar rapidamente.,Arritmia,"[[""palpitações"", ""tontura""]]",0.33,baixo risco
+Tenho inchaço nos tornozelos e ganho de peso nos últimos 5 dias.,Insuficiência cardíaca,"[[""inchaço nos tornozelos"", ""ganho de peso""]]",0.33,baixo risco
+Surgiu uma dor súbita no peito esquerdo com suor frio e náusea.,Indefinido,[],0.0,alto risco
+Tenho tosse seca pior à noite e falta de ar quando me deito.,Insuficiência cardíaca,"[[""tosse seca"", ""falta de ar""]]",0.33,baixo risco
+Sinto dor que irradia para o braço esquerdo e mandíbula desde ontem.,Indefinido,[],0.0,alto risco
+Tenho pressão alta medida em casa e dor de cabeça pulsante frequente.,Hipertensão arterial,"[[""pressão alta"", ""dor de cabeça""]]",0.33,baixo risco
+"Apresento dor torácica leve, mas persistente, quando fico estressado no trabalho.",Indefinido,[],0.0,baixo risco
