@@ -73,6 +73,15 @@ Links rapidos:
 - Prototipo Flask: `FASE4/app/app.py` (usa `model.pt` exportado do notebook)
 - Relatorios, metricas e fairness: `FASE4/reports/` (inclui predict_example.json)
 
+## Fase 5 (Assistente Cardiológico Inteligente)
+- Guia da fase: `FASE5/README.md`
+- **IMPORTANTE:** Migração para **Watson Actions** (Skills depreciados). Ver `FASE5/WATSON_ACTIONS_GUIDE.md`.
+- Frontend Moderno: `FASE5/app/`
+- Backend Híbrido: `FASE5/backend/` (Watson + Fallback Local)
+- Automação RPA e GenAI: `FASE5/automation/` e `FASE5/notebooks/`
+
 ## Historico de lancamentos
 - 0.1.0 - 2025-10-24
   - Entrega Fase 3 (ESP32+SPIFFS+MQTT TLS, Node-RED, REST, Notebook) + evidencias
+- 0.2.0 - 2026-02-14
+  - Entrega Fase 5 (Chatbot Watson Actions, RPA, GenAI)

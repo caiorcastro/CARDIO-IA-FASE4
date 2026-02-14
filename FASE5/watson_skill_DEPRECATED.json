@@ -1,0 +1,311 @@
+{
+    "_COMMENT": "ARQUIVO MANTIDO PARA FINS ACADÊMICOS. A SOLUÇÃO FINAL UTILIZA 'WATSON ACTIONS' DEVIDO A MUDANÇAS NA PLATAFORMA IBM (2025/2026).",
+    "intents": [
+        {
+            "intent": "saudacao",
+            "examples": [
+                {
+                    "text": "Olá"
+                },
+                {
+                    "text": "Bom dia"
+                },
+                {
+                    "text": "Oi"
+                },
+                {
+                    "text": "Tudo bem?"
+                },
+                {
+                    "text": "E aí"
+                },
+                {
+                    "text": "Boa noite"
+                }
+            ]
+        },
+        {
+            "intent": "agendar_consulta",
+            "examples": [
+                {
+                    "text": "Quero marcar uma consulta"
+                },
+                {
+                    "text": "Agendar médico"
+                },
+                {
+                    "text": "Preciso ver um cardiologista"
+                },
+                {
+                    "text": "Marcar horário"
+                },
+                {
+                    "text": "Consulta de revisão"
+                }
+            ]
+        },
+        {
+            "intent": "dor_no_peito",
+            "examples": [
+                {
+                    "text": "Estou com dor no peito"
+                },
+                {
+                    "text": "Meu peito dói"
+                },
+                {
+                    "text": "Sinto uma pontada no coração"
+                },
+                {
+                    "text": "Aperto no peito"
+                },
+                {
+                    "text": "Queimação no tórax"
+                }
+            ]
+        },
+        {
+            "intent": "falta_de_ar",
+            "examples": [
+                {
+                    "text": "Estou sem ar"
+                },
+                {
+                    "text": "Dificuldade para respirar"
+                },
+                {
+                    "text": "Sinto falta de ar"
+                },
+                {
+                    "text": "Ofegante"
+                }
+            ]
+        },
+        {
+            "intent": "info_pressao",
+            "examples": [
+                {
+                    "text": "Qual a pressão ideal?"
+                },
+                {
+                    "text": "Minha pressão está alta"
+                },
+                {
+                    "text": "O que é hipertensão?"
+                },
+                {
+                    "text": "12 por 8 é bom?"
+                }
+            ]
+        },
+        {
+            "intent": "agradecimento",
+            "examples": [
+                {
+                    "text": "Obrigado"
+                },
+                {
+                    "text": "Veleu"
+                },
+                {
+                    "text": "Ajudou muito"
+                }
+            ]
+        }
+    ],
+    "entities": [
+        {
+            "entity": "sintoma",
+            "values": [
+                {
+                    "value": "dor",
+                    "synonyms": [
+                        "dor",
+                        "doendo",
+                        "pontada"
+                    ]
+                },
+                {
+                    "value": "falta_de_ar",
+                    "synonyms": [
+                        "falta de ar",
+                        "sufocamento",
+                        "dispneia"
+                    ]
+                },
+                {
+                    "value": "tontura",
+                    "synonyms": [
+                        "tontura",
+                        "vertigem",
+                        "zonzo"
+                    ]
+                },
+                {
+                    "value": "palpitacao",
+                    "synonyms": [
+                        "palpitação",
+                        "coração disparado",
+                        "taquicardia"
+                    ]
+                }
+            ]
+        },
+        {
+            "entity": "sys-date",
+            "values": [],
+            "fuzzy_match": true
+        },
+        {
+            "entity": "sys-time",
+            "values": [],
+            "fuzzy_match": true
+        }
+    ],
+    "dialog_nodes": [
+        {
+            "type": "standard",
+            "title": "Bem-vindo",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "Olá! Sou o **Assistente CardioIA**. 🫀\n\nEstou aqui para ajudar no monitoramento da sua saúde cardíaca. Posso auxiliar com:\n- 📅 Agendamento de consultas\n- 🆘 Orientações de emergência\n- 🩺 Informações sobre sinais vitais\n\nComo posso ser útil agora?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "welcome",
+            "dialog_node": "welcome"
+        },
+        {
+            "type": "standard",
+            "title": "Saudação",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "Olá! Como está seu coração hoje? Posso ajudar com agendamentos ou dúvidas?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "#saudacao",
+            "dialog_node": "node_saudacao"
+        },
+        {
+            "type": "standard",
+            "title": "Emergência - Dor no Peito",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "🔴 **ALERTA DE EMERGÊNCIA** 🔴\n\nDor no peito pode ser um sinal de infarto. Por favor, responda com urgência:\n\nA dor irradia para o braço esquerdo ou mandíbula? Você sente náusea ou suor frio?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "context": {
+                "em_emergencia": true
+            },
+            "conditions": "#dor_no_peito",
+            "dialog_node": "node_emergencia"
+        },
+        {
+            "type": "standard",
+            "title": "Confirmação Emergência - Sim",
+            "parent": "node_emergencia",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "🚨 **AÇÃO IMEDIATA NECESSÁRIA** 🚨\n\nIsso caracteriza uma emergência médica grave. \n\n1. Pare qualquer atividade e sente-se ou deite-se.\n2. Se tiver aspirina e não for alérgico, mastigue um comprimido.\n3. **Ligue para o SAMU (192) IMEDIATAMENTE.**\n\nEstou registrando este evento no seu histórico."
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "#sim || @sintoma:tontura",
+            "dialog_node": "node_emergencia_confirmada"
+        },
+        {
+            "type": "standard",
+            "title": "Agendamento - Início",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "Certo, vamos agendar. Para qual dia você gostaria de marcar a consulta? (Ex: Próxima segunda, dia 25)"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "#agendar_consulta",
+            "dialog_node": "node_agendamento"
+        },
+        {
+            "type": "standard",
+            "title": "Agendamento - Captura Data",
+            "parent": "node_agendamento",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "Entendido. Consulta pré-agendada para **<? @sys-date ?>**. \n\nVocê receberá a confirmação por e-mail em breve. Deseja adicionar algum observação sobre o motivo da consulta?"
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "context": {
+                "data_consulta": "<? @sys-date ?>"
+            },
+            "conditions": "@sys-date",
+            "dialog_node": "node_agendamento_data"
+        },
+        {
+            "type": "standard",
+            "title": "Falha de Entendimento (Fallback)",
+            "output": {
+                "generic": [
+                    {
+                        "values": [
+                            {
+                                "text": "Desculpe, não entendi completamente. Sou um assistente focado em cardiologia.\n\nTente dizer:\n- \"Quero agendar uma consulta\"\n- \"Estou com dor no peito\"\n- \"O que é pressão alta?\""
+                            }
+                        ],
+                        "response_type": "text",
+                        "selection_policy": "sequential"
+                    }
+                ]
+            },
+            "conditions": "anything_else",
+            "dialog_node": "anything_else"
+        }
+    ],
+    "name": "CardioIA-Skill-Advanced",
+    "language": "pt-br",
+    "description": "Skill avançada para assistente cardiológico (Versão Dialog/Legacy)."
+}
